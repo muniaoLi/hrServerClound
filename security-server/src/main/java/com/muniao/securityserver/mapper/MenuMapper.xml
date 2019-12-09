@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.muniao.securityserver.mapper.MenuMapper">
+    <resultMap id="MenuResultMap" type="com.muniao.securityserver.po.MenuPO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="pattern" property="pattern" jdbcType="VARCHAR"/>
+        <collection property="roles" ofType="com.muniao.securityserver.po.RolePO"
+                    select="com.muniao.securityserver.mapper.RoleMapper.getRolesByMenuId" column="id">
+        </collection>
+    </resultMap>
+    <select id="findAllMenu" resultMap="MenuResultMap">
+        select * from menu
+    </select>
+</mapper>
